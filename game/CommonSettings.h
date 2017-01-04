@@ -1,8 +1,8 @@
 #pragma once
 namespace CommonSettings {
 	//‰ğ‘œ“x
-	constexpr int WINDOW_WIDTH = 800;
-	constexpr int WINDOW_HEIGHT = 600;
+	constexpr int WINDOW_WIDTH = 1280;
+	constexpr int WINDOW_HEIGHT = 720;
 
 	//fps(60ˆÈã‚Í‚’¼“¯Šú‚ğØ‚Á‚Ä‚­‚¾‚³‚¢B)
 	constexpr int FRAME_RATE = 60;
