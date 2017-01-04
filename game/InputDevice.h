@@ -3,17 +3,26 @@
 #include <array>
 #include "DxLib.h"
 #include "Timer.h"
+
+#define USE_INPUTDEVICE_DEF
+
+#ifdef USE_INPUTDEVICE_DEF
+#define keyInput InputDevice::Keyboard::GetInstance()
+#define mouseInput InputDevice::Mouse::GetInstance()
+#endif
 //----------------------------------------------------------
 namespace InputDevice {
 	class Keyboard {
-	public:
+	private:
 		Keyboard();
 		~Keyboard();
+	public:
+		static Keyboard& GetInstance() { static Keyboard key; return key; };
+
 		void Update();				// キーの入力状態を更新する
 		int GetPressFrame(int keyCode)	{ return m_frame[keyCode]; }// 引数のキーコードのキーの入力フレーム数を返す
 		int GetPressTime(int keyCode)	{ return m_time[keyCode]; }	// 引数のキーコードのキーの入力時間(リアルタイム)を返す
 		bool IsRelease(int keyCode);	// ボタンが上がったとき
-
 		void SetInterval(int time)	{ m_interval = time; };	//ミリ秒
 		bool GetIsUpdate(int keyCode);	//フレーム基準なら余り求めてね★
 	private:
@@ -28,12 +37,14 @@ namespace InputDevice {
 	};
 	
 	class Mouse {
-	public:
+	private:
 		Mouse();
 		~Mouse();
 
-		void Update();
+	public:
+		static Mouse& GetInstance() { static Mouse mouse; return mouse; };
 
+		void Update();
 		int GetLeftPressFrame()		{ return m_leftPress.first; };
 		int GetLeftPressTime()		{ return m_leftPress.second; };
 		int GetRightPressFrame()	{ return m_rightPress.first; };
@@ -58,9 +69,12 @@ namespace InputDevice {
 
 	//これだけ殆ど前のテンプレのまま放置
 	class JoyPad {
-	public:
+	private:
 		JoyPad();
 		~JoyPad();
+
+	public:
+		static JoyPad& GetInstance() { static JoyPad joyPad; return joyPad; };
 		void Update();
 		bool Release(int KeyCode);
 		int GetPressFrame(int KeyCode);
@@ -69,6 +83,7 @@ namespace InputDevice {
 		int m_JoyKey[68];
 		bool upon;
 
+	public:
 		//Keyboard.h
 		static constexpr int JOYPAD1 = 1;
 		static constexpr int JOYPAD2 = 34 + 1;
