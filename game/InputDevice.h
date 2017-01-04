@@ -26,7 +26,7 @@ namespace InputDevice {
 
 		int m_interval;
 	};
-
+	
 	class Mouse {
 	public:
 		Mouse();

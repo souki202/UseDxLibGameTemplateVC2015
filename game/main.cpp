@@ -20,7 +20,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			break;//ウィンドウの×ボタンが押されたらループを抜ける
 		}
 		ClearDrawScreen();
-
+		
 		if (!Fmain.Update()) {
 			break;
 		}

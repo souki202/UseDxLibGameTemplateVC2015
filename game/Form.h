@@ -15,6 +15,6 @@ public:
 private:
 	InputDevice::Keyboard kInput;
 	InputDevice::Mouse mInput;
-	
+
 };
 //---------------------------------------------------------------------------
